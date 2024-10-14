@@ -2,6 +2,6 @@ package io.github.filipchrzescijanek;
 
 public interface AddMatchHandler {
 
-    String handle(AddMatch addMatch);
+    String handle(AddMatch command);
 
 }

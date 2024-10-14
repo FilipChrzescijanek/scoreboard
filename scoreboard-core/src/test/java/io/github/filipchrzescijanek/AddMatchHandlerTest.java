@@ -7,6 +7,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.time.Instant;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 public class AddMatchHandlerTest {
@@ -32,13 +34,16 @@ public class AddMatchHandlerTest {
 
         // when
         String matchId = scoreboard.handle(new AddMatch("home", "away"));
-        MatchDetails matchDetails = scoreboard.getById(matchId);
+        Match match = scoreboard.getById(matchId);
 
         // then
-        assertThat(matchDetails).isNotNull();
-        assertThat(matchDetails).extracting(MatchDetails::score).isEqualTo(Score.initial());
-        assertThat(matchDetails).extracting(MatchDetails::homeTeam).isEqualTo("home");
-        assertThat(matchDetails).extracting(MatchDetails::awayTeam).isEqualTo("away");
+        assertThat(match).isNotNull();
+        assertThat(match).extracting(Match::id).isEqualTo(matchId);
+        assertThatNoException().isThrownBy(() -> UUID.fromString(matchId));
+        assertThat(match).extracting(Match::score).isEqualTo(Score.initial());
+        assertThat(match).extracting(Match::createdAt).isNotNull().isInstanceOf(Instant.class);
+        assertThat(match).extracting(Match::homeTeam).isEqualTo("home");
+        assertThat(match).extracting(Match::awayTeam).isEqualTo("away");
     }
 
     static Stream<Arguments> provideInvalidArguments() {
