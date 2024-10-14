@@ -13,6 +13,8 @@ dependencies {
 }
 
 java {
+    withSourcesJar()
+    withJavadocJar()
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
@@ -21,3 +23,13 @@ java {
 tasks.named<Test>("test") {
     useJUnitPlatform()
 }
+
+tasks.jar {
+    manifest {
+        attributes(mapOf("Implementation-Title" to project.name,
+                         "Implementation-Version" to project.version))
+    }
+}
+
+group = "io.github.filipchrzescijanek"
+version = "0.0.1"

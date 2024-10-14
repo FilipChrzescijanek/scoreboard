@@ -7,9 +7,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(libs.junit.jupiter)
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation(project(":scoreboard-core"))
 }
 
 java {
@@ -20,8 +18,4 @@ java {
 
 application {
     mainClass = "io.github.filipchrzescijanek.App" 
-}
-
-tasks.named<Test>("test") {
-    useJUnitPlatform()
 }

@@ -1,11 +1,25 @@
 # scoreboard
 
-`Live Football World Cup Scoreboard` Java library.
+`Live Football World Cup Scoreboard` Java library
 
-## scoreboard-core
+## requirements
 
-Contains core library sources.
+JDK version 21 or later
 
-## scoreboard-demo
+## build
 
-Contains a demo application that uses the core library.
+Run `./gradlew build`
+
+## run demo
+
+Run `./gradlew run`
+
+## directory structure
+
+### scoreboard-core
+
+Contains core library sources
+
+### scoreboard-demo
+
+Contains a demo application that uses the core library
