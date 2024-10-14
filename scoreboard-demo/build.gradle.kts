@@ -1,5 +1,5 @@
 plugins {
-    `java-library`
+    application
 }
 
 repositories {
@@ -16,6 +16,10 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+application {
+    mainClass = "io.github.filipchrzescijanek.App" 
 }
 
 tasks.named<Test>("test") {
