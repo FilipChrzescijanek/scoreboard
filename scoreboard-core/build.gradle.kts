@@ -8,13 +8,13 @@ repositories {
 
 dependencies {
     testImplementation(libs.junit.jupiter)
+    testImplementation(libs.assertj.core)
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 java {
     withSourcesJar()
-    withJavadocJar()
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
@@ -32,4 +32,3 @@ tasks.jar {
 }
 
 group = "io.github.filipchrzescijanek"
-version = "0.0.1"
