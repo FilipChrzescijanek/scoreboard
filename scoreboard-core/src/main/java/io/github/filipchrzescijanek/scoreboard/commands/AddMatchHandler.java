@@ -1,4 +1,4 @@
-package io.github.filipchrzescijanek;
+package io.github.filipchrzescijanek.scoreboard.commands;
 
 public interface AddMatchHandler {
 

@@ -1,4 +1,4 @@
-package io.github.filipchrzescijanek;
+package io.github.filipchrzescijanek.scoreboard.domain;
 
 public record Score(int homeScore, int awayScore) {
 
