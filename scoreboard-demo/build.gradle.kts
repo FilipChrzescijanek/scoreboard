@@ -17,5 +17,5 @@ java {
 }
 
 application {
-    mainClass = "io.github.filipchrzescijanek.App" 
+    mainClass = "io.github.filipchrzescijanek.scoreboard.Demo" 
 }
