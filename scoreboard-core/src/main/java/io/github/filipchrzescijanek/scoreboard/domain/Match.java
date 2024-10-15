@@ -5,6 +5,10 @@ import java.util.UUID;
 
 public record Match(String id, String homeTeam, String awayTeam, Score score, Instant createdAt) {
 
+    public Match withScore(Score score) {
+        return new Match(this.id(), this.homeTeam(), this.awayTeam(), score, this.createdAt());
+    }
+
     public static Match between(String homeTeam, String awayTeam) {
         String id = UUID.randomUUID().toString();
         Instant createdAt = Instant.now();

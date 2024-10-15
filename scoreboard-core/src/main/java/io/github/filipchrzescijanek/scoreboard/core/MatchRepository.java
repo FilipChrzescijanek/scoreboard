@@ -7,10 +7,22 @@ import io.github.filipchrzescijanek.scoreboard.domain.Match;
 
 public class MatchRepository {
 
-    private final Map<String, Match> dataSource = new ConcurrentHashMap<>();
+    private final Map<String, Match> dataSource;
+
+    public MatchRepository(Map<String, Match> dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    public MatchRepository() {
+        this(new ConcurrentHashMap<>());
+    }
 
     public void save(Match match) {
         dataSource.putIfAbsent(match.id(), match);
+    }
+
+    public void update(Match match) {
+        dataSource.computeIfPresent(match.id(), (k, v) -> match);
     }
 
     public Match findById(String id) {
