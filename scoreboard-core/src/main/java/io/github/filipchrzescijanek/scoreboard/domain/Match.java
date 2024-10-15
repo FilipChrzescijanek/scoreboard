@@ -1,4 +1,4 @@
-package io.github.filipchrzescijanek;
+package io.github.filipchrzescijanek.scoreboard.domain;
 
 import java.time.Instant;
 import java.util.UUID;

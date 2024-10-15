@@ -1,4 +1,4 @@
-package io.github.filipchrzescijanek;
+package io.github.filipchrzescijanek.scoreboard.commands;
 
 import java.util.ArrayList;
 import java.util.List;

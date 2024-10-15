@@ -1,7 +1,9 @@
-package io.github.filipchrzescijanek;
+package io.github.filipchrzescijanek.scoreboard.core;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import io.github.filipchrzescijanek.scoreboard.domain.Match;
 
 public class MatchRepository {
 
