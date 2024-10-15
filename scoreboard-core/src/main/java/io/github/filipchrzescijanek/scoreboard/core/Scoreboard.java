@@ -7,11 +7,13 @@ import java.util.Objects;
 
 import io.github.filipchrzescijanek.scoreboard.commands.AddMatch;
 import io.github.filipchrzescijanek.scoreboard.commands.AddMatchHandler;
+import io.github.filipchrzescijanek.scoreboard.commands.FinishMatch;
+import io.github.filipchrzescijanek.scoreboard.commands.FinishMatchHandler;
 import io.github.filipchrzescijanek.scoreboard.commands.UpdateScore;
 import io.github.filipchrzescijanek.scoreboard.commands.UpdateScoreHandler;
 import io.github.filipchrzescijanek.scoreboard.queries.GetMatchByIdHandler;
 
-public class Scoreboard implements GetMatchByIdHandler, AddMatchHandler, UpdateScoreHandler {
+public class Scoreboard implements GetMatchByIdHandler, AddMatchHandler, UpdateScoreHandler, FinishMatchHandler {
 
     private final MatchRepository repository;
 
@@ -37,12 +39,12 @@ public class Scoreboard implements GetMatchByIdHandler, AddMatchHandler, UpdateS
 
     @Override
     public void handle(UpdateScore command) {
-        Match match = repository.findById(command.matchId());
-        if (Objects.isNull(match)) {
-            throw new IllegalStateException("Error: match not found, can't update the score");
-        } else {
-            repository.update(match.withScore(new Score(command.homeTeamScore(), command.awayTeamScore())));
-        }
+        repository.update(command.matchId(), new Score(command.homeTeamScore(), command.awayTeamScore()));
+    }
+
+    @Override
+    public void handle(FinishMatch command) {
+        repository.delete(command.matchId());
     };
 
 }
