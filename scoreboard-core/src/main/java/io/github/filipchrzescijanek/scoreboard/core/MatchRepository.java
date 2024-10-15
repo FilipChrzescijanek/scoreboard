@@ -1,5 +1,6 @@
 package io.github.filipchrzescijanek.scoreboard.core;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
@@ -45,6 +46,10 @@ public class MatchRepository {
                 return null;
             }
         });
+    }
+
+    public Collection<Match> getAll() {
+        return dataSource.values();
     }
 
 }

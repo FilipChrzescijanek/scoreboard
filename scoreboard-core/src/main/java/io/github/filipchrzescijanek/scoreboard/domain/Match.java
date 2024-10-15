@@ -16,4 +16,9 @@ public record Match(String id, String homeTeam, String awayTeam, Score score, In
         return new Match(id, homeTeam, awayTeam, score, createdAt);
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s %d - %s %d", homeTeam(), score().homeScore(), awayTeam(), score().awayScore());
+    }
+
 }
