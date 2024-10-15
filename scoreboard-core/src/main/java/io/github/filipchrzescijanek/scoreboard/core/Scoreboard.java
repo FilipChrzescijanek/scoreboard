@@ -3,8 +3,6 @@ package io.github.filipchrzescijanek.scoreboard.core;
 import io.github.filipchrzescijanek.scoreboard.domain.Match;
 import io.github.filipchrzescijanek.scoreboard.domain.Score;
 
-import java.util.Objects;
-
 import io.github.filipchrzescijanek.scoreboard.commands.AddMatch;
 import io.github.filipchrzescijanek.scoreboard.commands.AddMatchHandler;
 import io.github.filipchrzescijanek.scoreboard.commands.FinishMatch;
@@ -12,8 +10,9 @@ import io.github.filipchrzescijanek.scoreboard.commands.FinishMatchHandler;
 import io.github.filipchrzescijanek.scoreboard.commands.UpdateScore;
 import io.github.filipchrzescijanek.scoreboard.commands.UpdateScoreHandler;
 import io.github.filipchrzescijanek.scoreboard.queries.GetMatchByIdHandler;
+import io.github.filipchrzescijanek.scoreboard.queries.GetSummaryHandler;
 
-public class Scoreboard implements GetMatchByIdHandler, AddMatchHandler, UpdateScoreHandler, FinishMatchHandler {
+public class Scoreboard implements GetMatchByIdHandler, AddMatchHandler, UpdateScoreHandler, FinishMatchHandler, GetSummaryHandler {
 
     private final MatchRepository repository;
 
@@ -45,6 +44,11 @@ public class Scoreboard implements GetMatchByIdHandler, AddMatchHandler, UpdateS
     @Override
     public void handle(FinishMatch command) {
         repository.delete(command.matchId());
+    }
+
+    @Override
+    public String getSummary() {
+        throw new UnsupportedOperationException("Unimplemented method 'getSummary'");
     };
 
 }
