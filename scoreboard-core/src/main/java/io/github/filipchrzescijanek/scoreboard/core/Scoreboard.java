@@ -1,6 +1,9 @@
 package io.github.filipchrzescijanek.scoreboard.core;
 
 import io.github.filipchrzescijanek.scoreboard.domain.Match;
+import io.github.filipchrzescijanek.scoreboard.domain.Score;
+
+import java.util.Objects;
 
 import io.github.filipchrzescijanek.scoreboard.commands.AddMatch;
 import io.github.filipchrzescijanek.scoreboard.commands.AddMatchHandler;
@@ -34,6 +37,12 @@ public class Scoreboard implements GetMatchByIdHandler, AddMatchHandler, UpdateS
 
     @Override
     public void handle(UpdateScore command) {
-        throw new UnsupportedOperationException("Unimplemented method 'handle(UpdateScore)'");
+        Match match = repository.findById(command.matchId());
+        if (Objects.isNull(match)) {
+            throw new IllegalStateException("Error: match not found, can't update the score");
+        } else {
+            repository.update(match.withScore(new Score(command.homeTeamScore(), command.awayTeamScore())));
+        }
     };
+
 }

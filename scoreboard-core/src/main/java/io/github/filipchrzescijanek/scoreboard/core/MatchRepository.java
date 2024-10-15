@@ -21,6 +21,10 @@ public class MatchRepository {
         dataSource.putIfAbsent(match.id(), match);
     }
 
+    public void update(Match match) {
+        dataSource.computeIfPresent(match.id(), (k, v) -> match);
+    }
+
     public Match findById(String id) {
         return dataSource.get(id);
     }
