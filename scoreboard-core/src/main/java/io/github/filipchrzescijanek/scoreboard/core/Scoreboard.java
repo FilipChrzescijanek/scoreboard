@@ -39,17 +39,12 @@ public class Scoreboard implements GetMatchByIdHandler, AddMatchHandler, UpdateS
 
     @Override
     public void handle(UpdateScore command) {
-        Match match = repository.findById(command.matchId());
-        if (Objects.isNull(match)) {
-            throw new IllegalStateException("Error: match not found, can't update the score");
-        } else {
-            repository.update(match.withScore(new Score(command.homeTeamScore(), command.awayTeamScore())));
-        }
+        repository.update(command.matchId(), new Score(command.homeTeamScore(), command.awayTeamScore()));
     }
 
     @Override
     public void handle(FinishMatch command) {
-        throw new UnsupportedOperationException("Unimplemented method 'handle(FinishMatch)'");
+        repository.delete(command.matchId());
     };
 
 }
